@@ -1,24 +1,6 @@
-# README
+# API Only App for Invoiced
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+``` shell
+# this app was generated with
+rails new invoiced --api --no-sprocket -d postgresql
+```
