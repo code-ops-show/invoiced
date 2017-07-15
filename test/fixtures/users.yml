@@ -10,3 +10,7 @@ one:
   confirmed_at: <%= Time.now %>
 # column: value
 #
+two:
+  email: <%= Faker::Internet.email %>
+  authentication_token: 'different_token'
+  confirmed_at: <%= Time.now %>
