@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :accounts, only: %i[create update]
+    resources :accounts, only: %i[index create update]
 
     resource :sessions, only: %i[create destroy show]
     resources :users, only: %i[create]

@@ -13,6 +13,18 @@ module V1
       }
     end
 
+    test 'access user accounts' do
+      not_user_one_account = accounts(:another_one)
+
+      get v1_accounts_path, headers: @header
+
+      accounts = JSON.parse(@response.body)['data']
+      account_ids = accounts.map { |account| account['id'] }
+
+      assert_response :success
+      assert_not_includes account_ids, not_user_one_account.id
+    end
+
     test 'creates account for user' do
       account_params = {
         name: Faker::Company.name,
