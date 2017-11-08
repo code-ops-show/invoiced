@@ -36,10 +36,6 @@ module V1
 
     private
 
-    def current_account
-      @current_account ||= Account.friendly.find(params[:account_id])
-    end
-
     def current_organization
       @current_organization ||=
         current_account.organizations.find(params[:organization_id])
