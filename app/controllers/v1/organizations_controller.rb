@@ -3,6 +3,12 @@
 module V1
   # OrganizationsController
   class OrganizationsController < ApplicationController
+    def index
+      organizations = current_account.organizations
+
+      render :index, locals: { organizations: organizations }, status: :ok
+    end
+
     def create
       organization =
         current_account.organizations.build(organization_params)
@@ -10,7 +16,7 @@ module V1
       if organization.save
         render :create, locals: { organization: organization }, status: :created
       else
-        render json: { errors: organzation.errors.messages },
+        render json: { errors: organization.errors.messages },
                status: :unprocessable_entity
       end
     end

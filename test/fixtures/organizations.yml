@@ -1,7 +1,11 @@
 one: 
   name: <%= Faker::Company.name %>
+  address: <%= Faker::Address.street_name %>
+  tax_payer_number: <%= Faker::Company.ein %>
   account: artellectual
 
 two: 
   name: <%= Faker::Company.name %>
+  address: <%= Faker::Address.street_name %>
+  tax_payer_number: <%= Faker::Company.ein %>
   account: another_one

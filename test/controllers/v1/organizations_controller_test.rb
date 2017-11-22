@@ -15,6 +15,22 @@ module V1
       }
     end
 
+    test 'lists out organizations for @account' do
+      org_one = organizations(:one)
+      org_two = organizations(:two)
+
+      get v1_organizations_path(@account)
+
+      organization_ids = JSON.parse(@response.body)['data'].map do |org|
+        org['id']
+      end
+
+      assert_response :success
+
+      assert_includes organization_ids, org_one.id
+      assert_not_includes organization_ids, org_two.id
+    end
+
     test 'creates account for user' do
       organization_params = {
         name: Faker::Company.name,
@@ -33,6 +49,22 @@ module V1
       assert_response :created
 
       assert organization['name'] == organization_params[:name]
+    end
+
+    test 'should return unprocessable entity' do
+      organization_params = {
+        name: Faker::Company.name,
+        tax_payer_number: '',
+        address: ''
+      }
+
+      post(
+        v1_organizations_path(@account),
+        headers: @header,
+        params: { organization: organization_params }
+      )
+
+      assert_response :unprocessable_entity
     end
   end
 end
