@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     scope ':account_id' do
       resources :contacts, only: %i[index]
 
-      resources :organizations, only: %i[index create update] do
+      resources :organizations, only: %i[index create update show] do
         resources :contacts, only: %i[create update destroy]
       end
     end

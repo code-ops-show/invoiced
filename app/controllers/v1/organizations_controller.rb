@@ -9,6 +9,12 @@ module V1
       render :index, locals: { organizations: organizations }, status: :ok
     end
 
+    def show
+      organization = current_account.organizations.find(params[:id])
+
+      render :show, locals: { organization: organization }, status: :ok
+    end
+
     def create
       organization =
         current_account.organizations.build(organization_params)
