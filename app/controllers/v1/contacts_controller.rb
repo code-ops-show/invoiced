@@ -6,7 +6,7 @@ module V1
     include V1::Contacts::Response
 
     def index
-      @contacts = current_account.contacts
+      @contacts = current_scope.contacts
 
       render :index, status: :ok
     end
@@ -35,6 +35,10 @@ module V1
     end
 
     private
+
+    def current_scope
+      params[:organization_id].present? ? current_organization : current_account
+    end
 
     def current_organization
       @current_organization ||=
