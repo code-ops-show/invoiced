@@ -1,5 +1,23 @@
-.sidebar
-  background: red
+@import 'styles/colors'
 
-.content
-  background: blue
+.main_nav
+  background: $base-dark-blue
+  padding-top: 0.5em
+  padding-bottom: 0.5em
+  z-index: 9999 !important
+
+.links
+  color: $base-light-blue
+  border-radius: 4px
+  &:focus, &:active, &:visited
+    background: transparent
+    color: white
+  &:hover
+    background: $base-dark-blue
+    color: $base-light-blue
+  &.active
+    background: $base-light-blue
+    color: white
+
+.heading
+  color: white
