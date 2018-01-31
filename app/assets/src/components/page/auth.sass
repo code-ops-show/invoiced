@@ -1,0 +1,42 @@
+@import 'styles/colors'
+
+=fixed_width_and_center($width)
+  width: $width
+  margin-left: auto
+  margin-right: auto
+
+.auth_page_wrapper
+  background: linear-gradient(to bottom, $base-dark-blue, $base-light-blue)
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  form
+    input
+      margin-bottom: 1em !important
+
+.extras
+  +fixed_width_and_center(25em)
+  text-align: center
+  margin-top: 3em
+  a
+    color: white
+
+.title
+  +fixed_width_and_center(25em)
+  text-align: center
+  color: white
+  margin-top: 10em
+  h1
+    font-weight: 100
+    text-shadow: 2px 2px 0em $base-dark-blue
+
+
+.form_wrapper
+  +fixed_width_and_center(25em)
+  padding: 2em
+  margin-top: 5em
+  border-radius: 0.2em
+  box-shadow: 0em 0em 0.4em $base-dark-blue
+  background: white
