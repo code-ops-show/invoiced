@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import { RouterProvider } from 'react-router5'
 import { useStrict } from 'mobx'
 
+import { Auth } from 'stores'
+
 import { api } from 'fronto-api'
 
 import { Application, 
@@ -37,7 +39,8 @@ const endpoint = api({
 // in the Application layout component.
 const resources = {
   endpoint, 
-  layout
+  layout,
+  auth: new Auth(endpoint)
 }
 
 const app = 
