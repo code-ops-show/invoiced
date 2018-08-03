@@ -1,10 +1,20 @@
 import React from 'react'
+import { inject, observer } from 'mobx-react'
 import { Auth } from 'components/page'
 import { Link } from 'react-router5'
 
 import buttons from 'styles/buttons.sass'
 
-class SignIn extends React.PureComponent {
+@inject('auth') @observer
+class SignIn extends React.Component {
+  submitForm = (e) => {
+    e.preventDefault()
+
+    const { auth } = this.props
+
+    auth.createSession(this.email.value, this.password.value, null)
+  }
+
   render() {
     const extras = <Link routeName='auth.sign_up'>Don't have and account?</Link>
 

@@ -3,7 +3,7 @@ import { extendObservable, action, computed } from 'mobx'
 
 class Auth extends Connect {
   namespace = 'v1'
-  resource = 'auth'
+  resource = 'sessions'
 
   constructor(api, namespace = null) {
     super(api, namespace)
