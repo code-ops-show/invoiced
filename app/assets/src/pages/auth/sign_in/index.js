@@ -1,7 +1,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { Auth } from 'components/page'
-import { Link } from 'react-router5'
+import { Link, withRoute } from 'react-router5'
 
 import buttons from 'styles/buttons.sass'
 
@@ -10,9 +10,11 @@ class SignIn extends React.Component {
   submitForm = (e) => {
     e.preventDefault()
 
-    const { auth } = this.props
+    const { auth, router } = this.props
 
-    auth.createSession(this.email.value, this.password.value, null)
+    auth.createSession(this.email.value, this.password.value, () => {
+      router.navigate('posts')
+    })
   }
 
   render() {
@@ -35,4 +37,4 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn
+export default withRoute(SignIn)

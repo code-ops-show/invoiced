@@ -49,10 +49,9 @@ class Auth extends Connect {
         this.setCurrentUser(body, token)
         if (callback) callback()
       },
-      401: (body) => {
-        const { error } = body.data
+      401: (_body) => {
         this.setMessage({
-          body: t(error),
+          body: t('unauthorized'),
           type: 'error'
         })
       },
