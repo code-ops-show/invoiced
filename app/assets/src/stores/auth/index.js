@@ -47,13 +47,10 @@ class Auth extends Connect {
         const { user, token } = body.data
         localStorage.setItem('token', token)
         this.setCurrentUser(body, token)
-        if (callback) callback()
+        if (callback.success) callback.success()
       },
       401: (_body) => {
-        this.setMessage({
-          body: t('unauthorized'),
-          type: 'error'
-        })
+        if (callback.error) callback.error()
       },
     })
   }

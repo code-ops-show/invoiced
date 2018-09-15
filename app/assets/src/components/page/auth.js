@@ -6,6 +6,7 @@ class Auth extends React.PureComponent {
   render() {
     return (
       <div styleName='auth_page_wrapper'>
+        {this.props.top}
         <div styleName='title'>
           <h1>{this.props.title}</h1>
         </div>
