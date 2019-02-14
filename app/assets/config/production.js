@@ -3,7 +3,7 @@ const path = require('path')
 const { sync } = require('glob')
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
@@ -26,20 +26,24 @@ const config = {
   entry,
   output,
   resolve,
-
+  mode: 'production',
   module: {
     rules: [
       loaders.babel, loaders.assets, {
         test: /\.css$/i,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader', use: 'css-loader',
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       }, {
         test: /\.(scss|sass)$/i,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [css, postcss,'resolve-url-loader', sass]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          css,
+          postcss,
+          'resolve-url-loader',
+          sass
+        ]
       }
     ]
   },
@@ -54,13 +58,9 @@ const config = {
     }),
     new LodashModuleReplacementPlugin,
     new UglifyJSPlugin({}),
-    new ExtractTextPlugin({
-      filename: 'stylesheets/[name].[contentHash].css', allChunks: true
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['base', 'manifest'],
-      minChunks: Infinity
-    }),
+    new MiniCssExtractPlugin({
+      filename: 'stylesheets/[name].[hash].css', allChunks: true
+    })
   ]
 }
 

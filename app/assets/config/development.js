@@ -23,7 +23,7 @@ const config = {
   entry,
   output,
   resolve,
-
+  mode: 'development',
   module: {
     rules: [
       loaders.babel, loaders.assets, loaders.css, {
@@ -34,10 +34,6 @@ const config = {
 
   plugins: [
     require(path.resolve(__dirname, 'template')),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['base', 'manifest'],
-      minChunks: Infinity
-    })
   ],
 
   devtool: 'source-map',

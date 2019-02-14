@@ -1,39 +1,56 @@
 {
   "presets": [
-    ["@babel/env", {
-      "modules": false,
-      "targets": {
-        "browsers": "last 2 versions"
-      },
-      "useBuiltIns": "entry"
-    }],
-    "@babel/stage-0",
+    [
+      "@babel/env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": "last 2 versions"
+        },
+        "useBuiltIns": "entry"
+      }
+    ],
     "@babel/react"
   ],
-
   "plugins": [
     "lodash",
-    "react-loadable/babel",
-    ["module-resolver", {
-      "root": "./src",
-      "alias": {
-        "config": "./config",
-        "vendor": "./vendor"
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
       }
-    }],
-    ["@babel/plugin-proposal-class-properties", { 
-      "loose": true 
-    }],
-    ["react-css-modules", {
-      "webpackHotModuleReloading": true,
-      "filetypes": {
-        ".sass": { 
-          "syntax": "sugarss",
-          "plugins": [
-            "autoprefixer"
-          ]
+    ],
+    [
+      "module-resolver",
+      {
+        "root": "./src",
+        "alias": {
+          "config": "./config",
+          "vendor": "./vendor"
         }
       }
-    }]
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    [
+      "react-css-modules",
+      {
+        "webpackHotModuleReloading": true,
+        "filetypes": {
+          ".sass": {
+            "syntax": "sugarss",
+            "plugins": [
+              "autoprefixer"
+            ]
+          }
+        }
+      }
+    ]
   ]
 }

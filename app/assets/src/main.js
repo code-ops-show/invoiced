@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { RouterProvider } from 'react-router5'
-import { useStrict } from 'mobx'
+import { configure } from 'mobx'
 
 import { Auth } from 'stores'
 
@@ -14,7 +14,9 @@ import createRouter from '../config/router'
 
 
 // MobX useStrict
-useStrict(true)
+configure({
+  enforceActions: "always"
+})
 
 const router = createRouter({ listener: true, logger: true })
 
