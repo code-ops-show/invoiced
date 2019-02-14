@@ -1,6 +1,5 @@
-import React, { createElement } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { routeNode } from 'react-router5'
-import Loadable from 'react-loadable'
 import Loading from 'components/loading'
 
 export default routeNode('')((props) => {
@@ -9,8 +8,11 @@ export default routeNode('')((props) => {
 
   const segment = route.name.split('.')[0]
 
-  return createElement(Loadable({
-    loader: () => import(`./${segment}`),
-    loading: (props) => <Loading />
-  }))
+  const _Segment = lazy(() => import(`./${segment}`))
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <_Segment />
+    </Suspense>
+  )
  })
