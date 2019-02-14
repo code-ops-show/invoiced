@@ -3,6 +3,8 @@
 module V1
   # Manages the Account model
   class AccountsController < ApplicationController
+    before_action :authenticate_user!
+
     def index
       accounts = current_user.accounts
 
