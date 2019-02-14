@@ -3,20 +3,40 @@ import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router5'
 
 import { Auth } from 'components/page'
+
+import { User } from 'stores'
+
 import buttons from 'styles/buttons.sass'
 
-// @inject('user') @observer
+@inject('endpoint') @observer
 class SignUp extends React.Component {
+  constructor(props) {
+    super(props)
+
+    const { endpoint } = props
+
+    this.store = new User(endpoint)
+  }
   submitForm = (e) => {
     e.preventDefault()
 
-    // const { user } = this.props
+    const { router } = this.props
 
-    // user.create(
-    //   this.email.value,
-    //   this.password.value,
-    //   this.password_confirm.value
-    // )
+    const params = {
+      user: {
+        email: this.email.value,
+        password: this.password.value,
+        password_confirmation: this.password_confirm.value
+      }
+    }
+
+    this.store.create(null, params, {
+      200: (body) => {
+        const { user } = body.data
+      
+        router.navigate('posts')
+      }
+    })
   }
 
   render() {
