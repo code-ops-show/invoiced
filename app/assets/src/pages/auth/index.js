@@ -13,5 +13,5 @@ export default routeNode('auth')((props) => {
   
   const page = route.name.split('.')[1] || 'collection'
 
-  return createElement(pages[page])
+  return createElement(pages[page], {...props})
 })
